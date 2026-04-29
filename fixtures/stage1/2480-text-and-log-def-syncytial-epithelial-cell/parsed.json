@@ -1,0 +1,575 @@
+{
+  "n_changes": 39,
+  "n_reviewable": 32,
+  "n_decomposable": 12,
+  "by_term": {
+    "CL:0000779": {
+      "term_label": "multinuclear osteoclast",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 3,
+      "n_content": 3,
+      "changes": [
+        {
+          "term_id": "CL:0000779",
+          "term_label": "multinuclear osteoclast",
+          "side": "removed",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A specialized multinuclear osteoclast associated with the absorption and removal of bone.",
+          "value_label": null,
+          "refs": [
+            "PMID:12713016",
+            "GOC:add",
+            "PMID:9415452"
+          ]
+        },
+        {
+          "term_id": "CL:0000779",
+          "term_label": "multinuclear osteoclast",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A specialized multinuclear osteoclast, forming a syncytium through the fusion of mononuclear precursor cells, associated with the absorption and removal of bone.",
+          "value_label": null,
+          "refs": [
+            "PMID:29379067",
+            "PMID:38903088",
+            "PMID:12713016",
+            "GOC:add",
+            "PMID:9415452"
+          ]
+        },
+        {
+          "term_id": "CL:0000779",
+          "term_label": "multinuclear osteoclast",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/RO_0000056",
+          "predicate_label": "participates in",
+          "value": "http://purl.obolibrary.org/obo/GO_0000768",
+          "value_label": "syncytium formation by plasma membrane fusion",
+          "refs": []
+        }
+      ]
+    },
+    "CL:0000228": {
+      "term_label": "multinucleate cell",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 9,
+      "n_content": 7,
+      "changes": [
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "removed",
+          "kind": "annotation",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasDbXref",
+          "predicate_label": "has cross-reference",
+          "value": "AEO:0000203",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "removed",
+          "kind": "annotation",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasDbXref",
+          "predicate_label": "has cross-reference",
+          "value": "WBbt:0008074",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "removed",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "syncitium",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "removed",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "syncytial cell",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "removed",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "syncytium",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "removed",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A cell with more than one nucleus.",
+          "value_label": null,
+          "refs": [
+            "FB:ma"
+          ]
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A cell with more than one nucleus.",
+          "value_label": null,
+          "refs": [
+            "FB:ma",
+            "Wikipedia:Multinucleate"
+          ]
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "added",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "multinucleated cells",
+          "value_label": null,
+          "refs": [
+            "Wikipedia:Multinucleate"
+          ]
+        },
+        {
+          "term_id": "CL:0000228",
+          "term_label": "multinucleate cell",
+          "side": "added",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "polynuclear cells",
+          "value_label": null,
+          "refs": [
+            "Wikipedia:Multinucleate"
+          ]
+        }
+      ]
+    },
+    "CL:0000647": {
+      "term_label": "multinucleated giant cell",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 4,
+      "n_content": 4,
+      "changes": [
+        {
+          "term_id": "CL:0000647",
+          "term_label": "multinucleated giant cell",
+          "side": "removed",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A phagocytic cell formed by the fusion of macrophages, occurs in chronic inflammatory responses to persistent microorganism such as M.tuberculosis, component of granulomas. Sometimes used to refer to megakaryocytes.",
+          "value_label": null,
+          "refs": [
+            "ISBN:0702024783",
+            "ISBN:0702022918",
+            "GOC:add",
+            "GOC:tfm"
+          ]
+        },
+        {
+          "term_id": "CL:0000647",
+          "term_label": "multinucleated giant cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A phagocytic syncytial cell formed by the fusion of macrophages, occurs in chronic inflammatory responses to persistent microorganism such as M.tuberculosis, component of granulomas. Sometimes used to refer to megakaryocytes.",
+          "value_label": null,
+          "refs": [
+            "Wikipedia:Giant_cell",
+            "ISBN:0702024783",
+            "ISBN:0702022918",
+            "PMID:33348900",
+            "GOC:add",
+            "GOC:tfm"
+          ]
+        },
+        {
+          "term_id": "CL:0000647",
+          "term_label": "multinucleated giant cell",
+          "side": "added",
+          "kind": "synonym_related",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym",
+          "predicate_label": "has_related_synonym",
+          "value": "MGC",
+          "value_label": null,
+          "refs": [
+            "PMID:33348900"
+          ]
+        },
+        {
+          "term_id": "CL:0000647",
+          "term_label": "multinucleated giant cell",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/RO_0000056",
+          "predicate_label": "participates in",
+          "value": "http://purl.obolibrary.org/obo/GO_0000768",
+          "value_label": "syncytium formation by plasma membrane fusion",
+          "refs": []
+        }
+      ]
+    },
+    "CL:0002372": {
+      "term_label": "myotube",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 7,
+      "n_content": 7,
+      "changes": [
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "removed",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "myotubule",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "removed",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "single cell sarcomere",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "removed",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A transversely striated, synctial muscle cell, formed by the fusion of myoblasts.",
+          "value_label": null,
+          "refs": [
+            "PMID:22274696",
+            "GOC:dos",
+            "ISBN:0323052908",
+            "GOC:tfm"
+          ]
+        },
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "added",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "myofiber",
+          "value_label": null,
+          "refs": [
+            "FBbt:00005812"
+          ]
+        },
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "added",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "myofibril",
+          "value_label": null,
+          "refs": [
+            "FBbt:00005812"
+          ]
+        },
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A transversely striated, multinucleated syncytial muscle cell, formed by the fusion of myoblasts during muscle development.",
+          "value_label": null,
+          "refs": [
+            "PMID:22274696",
+            "GOC:dos",
+            "ISBN:0323052908",
+            "GOC:tfm"
+          ]
+        },
+        {
+          "term_id": "CL:0002372",
+          "term_label": "myotube",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/RO_0000056",
+          "predicate_label": "participates in",
+          "value": "http://purl.obolibrary.org/obo/GO_0000768",
+          "value_label": "syncytium formation by plasma membrane fusion",
+          "refs": []
+        }
+      ]
+    },
+    "CL:0008005": {
+      "term_label": "obliquely striated somatic muscle cell",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 4,
+      "n_content": 4,
+      "changes": [
+        {
+          "term_id": "CL:0008005",
+          "term_label": "obliquely striated somatic muscle cell",
+          "side": "removed",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A somatic muscle cell that is oblquely striated.  Examples include the somatic muscles of nematodes.",
+          "value_label": null,
+          "refs": [
+            "PMID:8720463"
+          ]
+        },
+        {
+          "term_id": "CL:0008005",
+          "term_label": "obliquely striated somatic muscle cell",
+          "side": "removed",
+          "kind": "equivalent_class",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": null,
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0008005",
+          "term_label": "obliquely striated somatic muscle cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A somatic muscle cell that is obliquely striated and mononucleated. Examples include the somatic muscles of nematodes.",
+          "value_label": null,
+          "refs": [
+            "PMID:8720463",
+            "doi:10.3908/wormatlas.1.7"
+          ]
+        },
+        {
+          "term_id": "CL:0008005",
+          "term_label": "obliquely striated somatic muscle cell",
+          "side": "added",
+          "kind": "equivalent_class",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": null,
+          "value_label": null,
+          "refs": []
+        }
+      ]
+    },
+    "CL:4052002": {
+      "term_label": "syncytial cell",
+      "is_new_term": true,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 8,
+      "n_content": 4,
+      "changes": [
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "class_declaration",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_4052002",
+          "value_label": "syncytial cell",
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://purl.org/dc/terms/contributor",
+          "predicate_label": "contributor",
+          "value": "https://orcid.org/0009-0000-8480-9277",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://purl.org/dc/terms/date",
+          "predicate_label": "date",
+          "value": "2024-08-15T10:38:46Z",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A multinucleate cell formed by the fusion of multiple uninuclear cells through plasma membrane fusion. This process leads to a single large cell containing multiple nuclei within a shared cytoplasm.",
+          "value_label": null,
+          "refs": [
+            "Wikipedia:Syncytium",
+            "PMID:20851884"
+          ]
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "synonym_related",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym",
+          "predicate_label": "has_related_synonym",
+          "value": "SC",
+          "value_label": null,
+          "refs": [
+            "PMID:9067520"
+          ]
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "synonym_exact",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym",
+          "predicate_label": "has exact synonym",
+          "value": "syncytium",
+          "value_label": null,
+          "refs": [
+            "WBbt:0008074"
+          ]
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "label",
+          "predicate_iri": "http://www.w3.org/2000/01/rdf-schema#label",
+          "predicate_label": "label",
+          "value": "syncytial cell",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052002",
+          "term_label": "syncytial cell",
+          "side": "added",
+          "kind": "equivalent_class",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": null,
+          "value_label": null,
+          "refs": []
+        }
+      ]
+    },
+    "CL:0000420": {
+      "term_label": "syncytial epithelial cell",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 3,
+      "n_content": 2,
+      "changes": [
+        {
+          "term_id": "CL:0000420",
+          "term_label": "syncytial epithelial cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "An epithelial cell that forms a syncytium, which is a multinucleated cell resulting from the fusion of multiple cells.",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000420",
+          "term_label": "syncytial epithelial cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasDbXref",
+          "predicate_label": "has cross-reference",
+          "value": "Wikipedia:Syncytium",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0000420",
+          "term_label": "syncytial epithelial cell",
+          "side": "added",
+          "kind": "subclass",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_4052002",
+          "value_label": "syncytial cell",
+          "refs": []
+        }
+      ]
+    },
+    "CL:0000525": {
+      "term_label": "syncytiotrophoblast cell",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 1,
+      "n_content": 1,
+      "changes": [
+        {
+          "term_id": "CL:0000525",
+          "term_label": "syncytiotrophoblast cell",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/RO_0000056",
+          "predicate_label": "participates in",
+          "value": "http://purl.obolibrary.org/obo/GO_0000768",
+          "value_label": "syncytium formation by plasma membrane fusion",
+          "refs": []
+        }
+      ]
+    }
+  }
+}

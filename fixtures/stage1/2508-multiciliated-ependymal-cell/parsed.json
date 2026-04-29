@@ -1,0 +1,161 @@
+{
+  "n_changes": 12,
+  "n_reviewable": 8,
+  "n_decomposable": 2,
+  "by_term": {
+    "CL:4052001": {
+      "term_label": "multiciliated ependymal cell",
+      "is_new_term": true,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 12,
+      "n_content": 8,
+      "changes": [
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "class_declaration",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_4052001",
+          "value_label": "multiciliated ependymal cell",
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://purl.org/dc/terms/contributor",
+          "predicate_label": "contributor",
+          "value": "https://orcid.org/0009-0000-8480-9277",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://purl.org/dc/terms/date",
+          "predicate_label": "date",
+          "value": "2024-08-20T10:06:15Z",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "synonym_broad",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym",
+          "predicate_label": "has_broad_synonym",
+          "value": "multiciliated ependymal cells",
+          "value_label": null,
+          "refs": [
+            "PMID:25045600"
+          ]
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "comment",
+          "predicate_iri": "http://www.w3.org/2000/01/rdf-schema#comment",
+          "predicate_label": "comment",
+          "value": "multiciliated ependymal cell, with an average of 16 motile cilia per cell, exhibits two types of planar cell polarity (PCP): rotational polarity, with unidirectional cilia orientation, and translational polarity, with asymmetric cilia positioning in the apical area. This location-specific PCP varies across the ventricular wall, aligning with the direction of CSF flow. These cells are interconnected by adherens and gap junctions, which support intercellular communication and maintain the structural integrity of the ependymal layer. Unlike some other cell types, these cells lack tight junctions.",
+          "value_label": null,
+          "refs": [
+            "PMID:27311928",
+            "PMID:25045600"
+          ]
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "An ependymal cell that lines the lateral, third, and fourth ventricles of the brain. The cell is characterized by multiple motile cilia on its apical surface, which beats in a coordinated manner to facilitate the movement of cerebrospinal fluid (CSF), contributing to brain homeostasis.",
+          "value_label": null,
+          "refs": [
+            "PMID:28067220",
+            "PMID:37008045",
+            "PMID:25045600"
+          ]
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "synonym_related",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym",
+          "predicate_label": "has_related_synonym",
+          "value": "E1",
+          "value_label": null,
+          "refs": [
+            "PMID:28067220",
+            "PMID:37008045"
+          ]
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "label",
+          "predicate_iri": "http://www.w3.org/2000/01/rdf-schema#label",
+          "predicate_label": "label",
+          "value": "multiciliated ependymal cell",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "subclass",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_0000065",
+          "value_label": "ependymal cell",
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "subclass",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_0005012",
+          "value_label": "multi-ciliated epithelial cell",
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/BFO_0000050",
+          "predicate_label": "part of",
+          "value": "http://purl.obolibrary.org/obo/UBERON_0005357",
+          "value_label": "brain ependyma",
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052001",
+          "term_label": "multiciliated ependymal cell",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/BFO_0000051",
+          "predicate_label": "has part",
+          "value": "http://purl.obolibrary.org/obo/GO_0031514",
+          "value_label": "motile cilium",
+          "refs": []
+        }
+      ]
+    }
+  }
+}

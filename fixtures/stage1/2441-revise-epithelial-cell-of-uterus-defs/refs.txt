@@ -1,0 +1,4 @@
+branch=2441-Revise-epithelial-cell-of-uterus-defs
+base=1fe8d9394cc3417ec5178367522cc050d7e232e9
+tip=65d96cdfca4774a959d7be9b46f257d3b95551ef
+base_source=merge-base(branch, upstream/master)

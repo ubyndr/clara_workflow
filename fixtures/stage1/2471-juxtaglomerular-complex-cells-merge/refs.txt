@@ -1,0 +1,4 @@
+branch=2471-juxtaglomerular-complex-cells-merge
+base=3f1caddc8da99bdc3c08cf000e66000cb3be8f79
+tip=45a075bb1bd5b7c2c51320e15e9454d8e2a7df21
+base_source=merge-base(branch, upstream/master)

@@ -1,0 +1,201 @@
+{
+  "cell_id": "CL_4033094",
+  "name": "age-associated B cell",
+  "definition": "A transcriptionally distinct memory B cell whose presence increases with age, during infections, and in autoimmune diseases. In humans and mice, this cell type can be identified by the expression of T-bet, CD11c, CD11b, and the lack of CD21. An age-associated B cell responds to TLR stimuli, may produce autoantibodies, and participates in antiviral responses and pathogen clearance.",
+  "references": ["PMID:30873171", "PMID:31986068", "PMID:35298565", "PMID:35798993"],
+  "assertions": [
+    {
+      "id": 1,
+      "text": "An age-associated B cell is a memory B cell.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "Age-associated B cells (ABCs), a unique population of memory B cells, appear in both individuals with autoimmune disease and in vivo models of autoimmunity.",
+        "source": "PMID:35798993",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 2,
+      "text": "An age-associated B cell is transcriptionally distinct from other B cell subsets.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "ABCs are a class-switched, antigen-specific memory population that display a distinct transcriptional program from other B cell subsets. (Mouat 2022, autoimmune); also 'Age-associated B cells (ABCs) are a transcriptionally and functionally unique B cell population'.",
+        "source": "PMID:35798993",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 3,
+      "text": "Age-associated B cell presence increases with age.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "The frequency of ABCs increases with age, particularly in females, and is elevated during various autoimmune and autoinflammatory diseases.",
+        "source": "PMID:35298565",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 4,
+      "text": "Age-associated B cell presence increases during infections.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "The frequency of ABCs has been shown to increase in various viral infections in humans and mice, including hepatitis C virus (HCV), rhinovirus, HIV, SARS-CoV-2, influenza, LCMV, vaccinia, MCMV, and gammaherpesvirus-68.",
+        "source": "PMID:35298565",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 5,
+      "text": "Age-associated B cell presence increases in autoimmune diseases.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "The peripheral blood of people with systemic lupus erythematosus (SLE) exhibits elevated proportions of ABCs compared to healthy individuals ... People with multiple sclerosis (MS), rheumatoid arthritis (RA), Sjogren's syndrome (SS), and axial spondylarthritis display increased proportions of circulating ABCs.",
+        "source": "PMID:35798993",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 6,
+      "text": "Age-associated B cells in humans and mice express T-bet.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "ABCs, identified by expression of T-bet, CD11c, CD11b, and lack of CD21, were initially shown to increase during both aging and autoimmunity. T-bet is a hallmark ABC marker.",
+        "source": "PMID:35798993",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 7,
+      "text": "Age-associated B cells in humans and mice express CD11c.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "ABCs, identified by expression of T-bet, CD11c, CD11b, and lack of CD21 ... primary markers used to denote the population including high expression of both CD11c and T-bet and low expression of CD21.",
+        "source": "PMID:35798993",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 8,
+      "text": "Age-associated B cells in humans and mice express CD11b.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "Rubtsov et al. described them as CD11b+ CD11c+ B cells. Also: 'ABCs, identified by expression of T-bet, CD11c, CD11b, and lack of CD21'.",
+        "source": "PMID:30873171",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 9,
+      "text": "Age-associated B cells in humans and mice lack CD21.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "ABCs, identified by expression of T-bet, CD11c, CD11b, and lack of CD21 ... primary markers ... including high expression of both CD11c and T-bet and low expression of CD21.",
+        "source": "PMID:35798993",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 10,
+      "text": "Age-associated B cells respond to TLR stimuli.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "Unlike follicular B cells, ABCs responded only to TLR7 and TLR9 stimuli in vitro. They were found to secrete antibodies upon TLR stimulation rather than upon BCR stimulation.",
+        "source": "PMID:30873171",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 11,
+      "text": "Age-associated B cells may produce autoantibodies.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "ABCs have been found to produce anti-chromatin antibodies upon TLR stimulation in vitro ... During autoimmune disease, ABCs produce both protective and inflammatory cytokines, stimulate T cells, and produce autoantibodies.",
+        "source": "PMID:30873171",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 12,
+      "text": "Age-associated B cells participate in antiviral responses.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "A major role of ABCs is to protect from viral infection. ABCs expand during an array of viral infections and display various functional capacities, including secretion of antibodies and activation of T cells.",
+        "source": "PMID:35298565",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    },
+    {
+      "id": 13,
+      "text": "Age-associated B cells participate in pathogen clearance.",
+      "category": "core",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "ABCs play an important role in the control and clearance of chronic virus infection. Mice lacking ABCs are unable to clear chronic LCMV from the serum and display elevated viral load in the kidney compared to mice with ABCs.",
+        "source": "PMID:35298565",
+        "note": null
+      },
+      "full_text_stage": null,
+      "final_verdict": "pass",
+      "warn_background": false
+    }
+  ],
+  "summary": {
+    "total": 13,
+    "total_core": 13,
+    "total_background": 0,
+    "core_pass_snippet": 13,
+    "core_pass_full_text": 0,
+    "core_fail": 0,
+    "core_uncertain": 0,
+    "background_pass": 0,
+    "background_warn": 0
+  }
+}

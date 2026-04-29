@@ -1,0 +1,4 @@
+branch=2508-ntrmulticiliated-ependymal-cell
+base=f5e80b4817aa33bb4da4e2f3f75c7e3ac6d5a975
+tip=c49d0984d72a5358aba9e6676ba24c31a5aca648
+base_source=merge-base(branch, upstream/master)

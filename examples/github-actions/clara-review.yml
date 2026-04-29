@@ -1,0 +1,138 @@
+# Template — copy into the ontology repo at .github/workflows/clara-review.yml
+#
+# Trigger:
+#   - Comment `/clara` on a PR  → reviews that PR.
+#   - Actions tab → Run workflow → enter a PR number  → same thing, manual.
+#
+# Scope for now: stage-1 only. Emits a change summary comment + a JSON artifact.
+# No pass/fail yet — advisory output, matching the ROBOT-diff-on-request pattern.
+
+name: CLARA review
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: PR number to review
+        required: true
+        type: string
+
+permissions:
+  pull-requests: write   # post comments, react to trigger
+  contents: read
+
+jobs:
+  review:
+    # issue_comment fires for issues too — filter to PRs with the /clara prefix.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.pull_request != null &&
+       startsWith(github.event.comment.body, '/clara'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve PR number
+        id: pr
+        run: |
+          if [ "${{ github.event_name }}" = workflow_dispatch ]; then
+            echo "num=${{ inputs.pr }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "num=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Acknowledge trigger comment
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            /repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
+            -f content=eyes
+
+      - name: Look up PR base/head SHAs
+        id: refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          data=$(gh pr view "${{ steps.pr.outputs.num }}" \
+            --repo "${{ github.repository }}" \
+            --json baseRefOid,headRefOid,headRefName,baseRefName)
+          echo "base=$(echo "$data" | jq -r .baseRefOid)" >> "$GITHUB_OUTPUT"
+          echo "head=$(echo "$data" | jq -r .headRefOid)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.refs.outputs.head }}
+
+      - name: Install ROBOT
+        run: |
+          mkdir -p "$HOME/.robot"
+          curl -fsSL -o "$HOME/.robot/robot.jar" \
+            https://github.com/ontodev/robot/releases/latest/download/robot.jar
+          printf '#!/bin/bash\nexec java -jar "%s/.robot/robot.jar" "$@"\n' "$HOME" \
+            > "$HOME/.robot/robot"
+          chmod +x "$HOME/.robot/robot"
+          echo "$HOME/.robot" >> "$GITHUB_PATH"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install clara_workflow
+        # Point this at your clara_workflow fork. Pin a commit once you want reproducibility.
+        run: pip install "git+https://github.com/Cellular-Semantics/clara_workflow.git@main"
+
+      - name: Run stage-1 extractor
+        run: |
+          python -m clara_workflow.stage1.extract \
+            --repo . \
+            --left  ${{ steps.refs.outputs.base }} \
+            --right ${{ steps.refs.outputs.head }} \
+            --edit-file src/ontology/cl-edit.owl \
+            --output changes.json
+
+      - name: Upload changes.json artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clara-changes-pr-${{ steps.pr.outputs.num }}
+          path: changes.json
+
+      - name: Build summary comment
+        id: summary
+        run: |
+          python - <<'PY' > comment.md
+          import json
+          d = json.load(open("changes.json"))
+          CONTENT = {
+              "text_def","synonym_exact","synonym_broad","synonym_narrow",
+              "synonym_related","subclass","relationship","class_declaration",
+              "comment","equivalent_class","deprecated",
+          }
+          lines = [
+              f"### CLARA review — {len(d['by_term'])} term(s), "
+              f"{len(d['changes'])} change(s)",
+              "",
+              "_Stage 1 only — advisory. Stages 2 & 3 (atomic assertions, "
+              "reference checking) not yet wired up._",
+              "",
+          ]
+          for tid, e in d["by_term"].items():
+              tag = " **(new term)**" if e["is_new_term"] else ""
+              n_content = sum(1 for c in e["changes"] if c["kind"] in CONTENT)
+              lines.append(
+                  f"- `{tid}` — {e['term_label']}{tag}: "
+                  f"{n_content} content change(s)"
+              )
+          print("\n".join(lines))
+          PY
+
+      - name: Post summary to PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment "${{ steps.pr.outputs.num }}" \
+            --repo "${{ github.repository }}" \
+            --body-file comment.md

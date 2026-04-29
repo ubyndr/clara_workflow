@@ -1,0 +1,4 @@
+branch=2485-ntr-pancreatic-islet-capillary-endothelial-cell
+base=1764fe76e93ac73ed454dcadb691c68d7d754afb
+tip=25f3ce0d3d5660e8d13fe2b9c2a8fe3f038c87da
+base_source=merge-base(branch, upstream/master)

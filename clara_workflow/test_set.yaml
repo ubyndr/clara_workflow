@@ -1,0 +1,135 @@
+# Initial test set for the agentic CLARA replication.
+#
+# Selected from the 78 terms flagged `has_all_references: true` in
+# agentic-pipeline-testdata/data/cells_data.json (retrievable open-source
+# references). Full term content (definition, references, relations) is
+# authoritative in cells_data.json — this file only lists IDs and selection
+# metadata so the extractor stays a single source of truth.
+#
+# Selection criteria:
+#   - spread across reference counts (1..5)
+#   - spread across definition length (55..2067 chars)
+#   - domain diversity (epithelial, endothelial, immune, neural, muscle,
+#     fibroblast, exocrine, ependymal)
+#   - include near-sibling groups for specificity testing
+
+source: agentic-pipeline-testdata/data/cells_data.json
+selection_date: 2026-04-19
+count: 20
+
+# Near-sibling groups — pipeline should distinguish members on stage-2/3 output
+sibling_groups:
+  diffuse_bipolar: [CL_4033095, CL_4033096, CL_4033085]
+  luteal:          [CL_4052046, CL_4052047]
+  resident_macrophage_reproductive: [CL_4033087, CL_4033088]
+
+terms:
+  # --- 1 reference ---
+  - id: CL_4052018
+    name: fallopian tube epithelial cell
+    refs: 1
+    def_len: 55
+    notes: trivial baseline; tests that pipeline does not over-decompose
+  - id: CL_4052015
+    name: endocrine gland capillary endothelial cell
+    refs: 1
+    def_len: 66
+    notes: trivial baseline, endothelial domain
+  - id: CL_4033087
+    name: placental resident macrophage
+    refs: 1
+    def_len: 271
+    notes: paired with decidual resident macrophage for specificity
+  - id: CL_4033088
+    name: decidual resident macrophage
+    refs: 1
+    def_len: 305
+    notes: paired with placental resident macrophage for specificity
+
+  # --- 2 references ---
+  - id: CL_4033095
+    name: diffuse bipolar 4a cell
+    refs: 2
+    def_len: 112
+    notes: bipolar specificity trio (4a / 4b / 5)
+  - id: CL_4033096
+    name: diffuse bipolar 4b cell
+    refs: 2
+    def_len: 88
+    notes: bipolar specificity trio (4a / 4b / 5)
+  - id: CL_4033085
+    name: diffuse bipolar 5 cell
+    refs: 2
+    def_len: 226
+    notes: bipolar specificity trio (4a / 4b / 5)
+  - id: CL_4052046
+    name: early luteal cell
+    refs: 2
+    def_len: 303
+    notes: luteal specificity pair with late luteal
+  - id: CL_4052008
+    name: crypt-bottom fibroblast
+    refs: 2
+    def_len: 487
+    notes: rich 2-ref def — secreted factors, spatial context
+
+  # --- 3 references ---
+  - id: CL_4052001
+    name: multiciliated ependymal cell
+    refs: 3
+    def_len: 286
+    notes: ependymal / CSF, mid-complexity
+  - id: CL_4052028
+    name: uterine natural killer cell
+    refs: 3
+    def_len: 349
+    notes: immune, dynamic-state definition (menstrual cycle / pregnancy)
+  - id: CL_4052025
+    name: neuromuscular junction nucleus
+    refs: 3
+    def_len: 443
+    notes: sub-cellular / transcriptional-profile definition
+  - id: CL_4052047
+    name: late luteal cell
+    refs: 3
+    def_len: 340
+    notes: luteal specificity pair with early luteal
+  - id: CL_0002633
+    name: respiratory basal cell
+    refs: 3
+    def_len: 1867
+    notes: ChatGPT-generated extended def — stress test for non-definitional content
+
+  # --- 4 references ---
+  - id: CL_4033094
+    name: age-associated B cell
+    refs: 4
+    def_len: 383
+    notes: multi-marker (T-bet/CD11c/CD11b/lack of CD21) + multi-function
+  - id: CL_4052026
+    name: type IIx muscle cell
+    refs: 4
+    def_len: 289
+    notes: muscle fibre typing, species-specific marker (MYH1 in humans)
+  - id: CL_4033093
+    name: limbal epithelial stem cell of cornea
+    refs: 4
+    def_len: 439
+    notes: definition cites authors inline (Secker 2009, Li 2023, Wang 2023)
+
+  # --- 5 references ---
+  - id: CL_0000622
+    name: acinar cell
+    refs: 5
+    def_len: 1749
+    notes: upper-bound stress; ChatGPT-generated extended def
+  - id: CL_0000160
+    name: goblet cell
+    refs: 5
+    def_len: 2067
+    notes: upper-bound stress; ChatGPT-generated extended def
+  - id: CL_0002629
+    name: mature microglial cell
+    refs: 5
+    def_len: 1949
+    notes: upper-bound stress; ChatGPT-generated extended def

@@ -1,0 +1,126 @@
+{
+  "n_changes": 9,
+  "n_reviewable": 5,
+  "n_decomposable": 1,
+  "by_term": {
+    "CL:4052014": {
+      "term_label": "pancreatic islet capillary endothelial cell",
+      "is_new_term": true,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 9,
+      "n_content": 5,
+      "changes": [
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "class_declaration",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_4052014",
+          "value_label": "pancreatic islet capillary endothelial cell",
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://purl.org/dc/terms/contributor",
+          "predicate_label": "contributor",
+          "value": "https://orcid.org/0009-0000-8480-9277",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "annotation",
+          "predicate_iri": "http://purl.org/dc/terms/date",
+          "predicate_label": "date",
+          "value": "2024-09-30T14:36:12Z",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "synonym_broad",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym",
+          "predicate_label": "has_broad_synonym",
+          "value": "pancreatic islet endothelial cell",
+          "value_label": null,
+          "refs": [
+            "PMID:16607697"
+          ]
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "A capillary endothelial cell that is part of islet of Langerhans, characterized by a high density of fenestrations &mdash;approximately ten times greater than those in exocrine pancreatic capillaries. These fenestrations facilitate efficient hormone exchange, which is essential for maintaining glucose homeostasis. The cell's structure and function are regulated by the local production of vascular endothelial growth factor-A (VEGF-A), which maintains its fenestrated architecture.",
+          "value_label": null,
+          "refs": [
+            "PMID:16607697",
+            "PMID:33200981",
+            "PMID:28396983",
+            "PMID:27124642"
+          ]
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "synonym_broad",
+          "predicate_iri": "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym",
+          "predicate_label": "has_broad_synonym",
+          "value": "islet endothelial cell",
+          "value_label": null,
+          "refs": [
+            "PMID:16607697",
+            "PMID:28396983"
+          ]
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "label",
+          "predicate_iri": "http://www.w3.org/2000/01/rdf-schema#label",
+          "predicate_label": "label",
+          "value": "pancreatic islet capillary endothelial cell",
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "equivalent_class",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": null,
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:4052014",
+          "term_label": "pancreatic islet capillary endothelial cell",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/RO_0000053",
+          "predicate_label": "has characteristic",
+          "value": "http://purl.obolibrary.org/obo/PATO_0002064",
+          "value_label": "fenestrated",
+          "refs": []
+        }
+      ]
+    }
+  }
+}

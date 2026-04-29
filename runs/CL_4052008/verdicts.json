@@ -1,0 +1,126 @@
+{
+  "cell_id": "CL_4052008",
+  "name": "crypt-bottom fibroblast",
+  "definition": "A subepithelial intestinal fibroblast that is located adjacent to the base of the crypt of Lieberkühn, near the intestinal stem cells. Characterized by low PDGFRα expression, this cell is crucial for maintaining the intestinal stem cell niche. Crypt-bottom fibroblast secretes key signaling molecules including canonical Wnt ligands (Wnt2, Wnt2b), Wnt potentiators (Rspo3), and BMP inhibitors (Grem1), which collectively regulate intestinal stem cell function and epithelial homeostasis.",
+  "references": ["DOI:10.1371/journal.pbio.3001032", "PMID:33916891"],
+  "assertions": [
+    {
+      "id": 1,
+      "text": "Crypt-bottom fibroblast is located adjacent to the base of the crypt of Lieberkühn.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "Crypt-bottom fibroblasts (CBFs), close to the intestinal stem cells, express low levels of Pdgfra ... In contrast to the situation in the small intestine, in the colon all Pdgfra low cells -CBFs1 and CBFs2 -were located in close proximity to the crypt/stem cell compartment: 1-3 cell diameters (Fig 3A).",
+        "source": "DOI:10.1371/journal.pbio.3001032",
+        "note": "The paper specifies colonic crypts (the Brügger study focuses on the adult murine colon) rather than the strict anatomical term 'crypt of Lieberkühn' (often restricted to small intestine glands). The Cell Ontology uses 'crypt of Lieberkühn' broadly for intestinal crypts; base-of-crypt localization is explicitly supported."
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 2,
+      "text": "Crypt-bottom fibroblast is located near the intestinal stem cells.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "Crypt-bottom fibroblasts (CBFs), close to the intestinal stem cells, express low levels of Pdgfra ...",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 3,
+      "text": "Crypt-bottom fibroblast is characterized by low PDGFRα expression.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "Crypt-bottom fibroblasts (CBFs) ... express low levels of Pdgfra ...",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 4,
+      "text": "Crypt-bottom fibroblast maintains the intestinal stem cell niche.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "While the Pdgfralow cells maintain intestinal stem cell proliferation, the Pdgfrahigh cells induce differentiation of the epithelial cells.",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 5,
+      "text": "Crypt-bottom fibroblast secretes Wnt2.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "CBFs1 ... show higher but not exclusive expression of the canonical Wnt ligands Wnt2 and Wnt2b. ... Wnt2 from CBFs1 interacting to Fzd3 in epithelial cells ...",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 6,
+      "text": "Crypt-bottom fibroblast secretes Wnt2b.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "CBFs1 ... show higher but not exclusive expression of the canonical Wnt ligands Wnt2 and Wnt2b. Wnt2b has been shown to support intestinal organoid growth (Farin et al., 2012).",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 7,
+      "text": "Crypt-bottom fibroblast secretes Rspo3.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "CBFs2 show higher but not exclusive expression of the Bmp antagonist Gremlin1 and the Wnt potentiator Rspo3.",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 8,
+      "text": "Crypt-bottom fibroblast secretes Grem1 (Gremlin1).",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "CBFs2 show higher but not exclusive expression of the Bmp antagonist Gremlin1 and the Wnt potentiator Rspo3. ... high expression of the marker gene Cd81 and the Bmp antagonist Gremlin1 are shared characteristics.",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 9,
+      "text": "Wnt2 and Wnt2b are canonical Wnt ligands.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "CBFs1 ... show higher but not exclusive expression of the canonical Wnt ligands Wnt2 and Wnt2b.",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 10,
+      "text": "Rspo3 is a Wnt potentiator.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "... the Wnt potentiator Rspo3.",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    },
+    {
+      "id": 11,
+      "text": "Grem1 is a BMP inhibitor.",
+      "snippet_stage": {
+        "verdict": "pass",
+        "evidence": "... the Bmp antagonist Gremlin1 ...",
+        "source": "DOI:10.1371/journal.pbio.3001032"
+      },
+      "full_text_stage": null
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "pass_snippet": 11,
+    "pass_full_text": 0,
+    "fail": 0,
+    "uncertain": 0
+  }
+}

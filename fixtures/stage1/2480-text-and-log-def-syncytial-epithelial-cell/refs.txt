@@ -1,0 +1,4 @@
+branch=2480-text-and-log-def-syncytial-epithelial-cell
+base=74b3da8e6837488ae5942b4faee84de0a897d21f
+tip=16b2b2d5c322ed0009cf40909f998bd3fd5903c5
+base_source=merge-base(branch, upstream/master)

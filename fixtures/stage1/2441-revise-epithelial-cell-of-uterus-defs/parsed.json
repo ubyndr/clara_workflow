@@ -1,0 +1,90 @@
+{
+  "n_changes": 6,
+  "n_reviewable": 6,
+  "n_decomposable": 2,
+  "by_term": {
+    "CL:0002149": {
+      "term_label": "epithelial cell of uterus",
+      "is_new_term": false,
+      "is_obsoleted": false,
+      "is_reviewable": true,
+      "n_changes": 6,
+      "n_content": 6,
+      "changes": [
+        {
+          "term_id": "CL:0002149",
+          "term_label": "epithelial cell of uterus",
+          "side": "removed",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "An epithelial cell of the uterus.",
+          "value_label": null,
+          "refs": [
+            "GOC:tfm"
+          ]
+        },
+        {
+          "term_id": "CL:0002149",
+          "term_label": "epithelial cell of uterus",
+          "side": "removed",
+          "kind": "equivalent_class",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": null,
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0002149",
+          "term_label": "epithelial cell of uterus",
+          "side": "removed",
+          "kind": "subclass",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": "http://purl.obolibrary.org/obo/CL_0002076",
+          "value_label": "endo-epithelial cell",
+          "refs": []
+        },
+        {
+          "term_id": "CL:0002149",
+          "term_label": "epithelial cell of uterus",
+          "side": "added",
+          "kind": "text_def",
+          "predicate_iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+          "predicate_label": "definition",
+          "value": "An epithelial cell of the uterus. This cell has a mesodermal origin.",
+          "value_label": null,
+          "refs": [
+            "GOC:tfm",
+            "PMID:11331626",
+            "PMID:16960017",
+            "PMID:21698266"
+          ]
+        },
+        {
+          "term_id": "CL:0002149",
+          "term_label": "epithelial cell of uterus",
+          "side": "added",
+          "kind": "equivalent_class",
+          "predicate_iri": null,
+          "predicate_label": null,
+          "value": null,
+          "value_label": null,
+          "refs": []
+        },
+        {
+          "term_id": "CL:0002149",
+          "term_label": "epithelial cell of uterus",
+          "side": "added",
+          "kind": "relationship",
+          "predicate_iri": "http://purl.obolibrary.org/obo/RO_0002202",
+          "predicate_label": "develops from",
+          "value": "http://purl.obolibrary.org/obo/CL_0000222",
+          "value_label": "mesodermal cell",
+          "refs": []
+        }
+      ]
+    }
+  }
+}
