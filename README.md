@@ -103,7 +103,10 @@ per-term summary. Requires ROBOT on `PATH`.
 ### Run the verification agent
 
 The verification loop is currently invoked by pointing Claude at the
-instructions file. From a Claude Code session in this repo:
+instructions file. First generate a routed target payload (for example
+`routing.json`) from stage-1 output using
+`cell-ontology/src/scripts/clara_select_targets.py`, then from a Claude Code
+session in this repo run:
 
 ```
 @clara_workflow/agent_instructions.md verify CL_4033094
@@ -111,11 +114,11 @@ instructions file. From a Claude Code session in this repo:
 
 The agent will:
 
-1. Load the term from
-   `agentic-pipeline-testdata/data/cells_data.json`.
-2. Decompose the definition into atomic assertions (`core` /
-   `background`).
-3. Run Asta `snippet_search` against the term's references
+1. Load `routing.json` and resolve the requested term id to its routed
+   validation targets.
+2. Decompose routed textual changes into atomic assertions and convert routed
+   structural / synonym targets into atomic claims.
+3. Run Asta `snippet_search` against each assertion's references
    (Stage B), then fall back to Europe PMC full text for any `core`
    assertion still unresolved (Stage C).
 4. Write `runs/{cell_id}/verdicts.json`,

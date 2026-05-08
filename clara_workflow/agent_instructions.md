@@ -1,130 +1,259 @@
-# Agent instructions — CLARA assertion verification
+# Agent instructions — CLARA routed-target verification
 
-You are verifying the factual claims in an ontology term's definition against
-its cited references. Work one term at a time.
+You are verifying factual claims implied by routed CLARA targets against their
+cited references.
+
+Work one term at a time, but process **all routed targets for that term**
+together.
 
 ## Input
 
-A cell ontology term id (e.g. `CL_4033094`). Load the term's entry from
-`agentic-pipeline-testdata/data/cells_data.json`. You will use:
+Two invocation modes are supported.
 
-- `name`
-- `definition` — the prose whose claims must be verified
-- `references` — comma-separated list of `PMID:...` and/or `doi:/...` ids
+### Local / focused
 
-Ignore `relations` for now (handled by classification checks, not this
-workflow). Ignore the PDFs under `agentic-pipeline-testdata/data/reference/`
-— retrieve sources yourself via the tools below.
+```text
+@clara_workflow/agent_instructions.md verify CL_4033094
+```
 
-## Stage A — Decompose into atomic assertions
+Treat the argument after `verify` as the requested term id. Accept either
+`CL_4033094` or `CL:4033094`.
 
-Break the `definition` into atomic, independently verifiable claims. Aim for
-claims that a single sentence from a paper could confirm or refute.
+### CI / batch
 
-Tag every assertion with a `category`:
+If no specific term id is supplied, process every routed term present in
+`routing.json`.
 
-- **`core`** — a claim whose subject is the cell type itself (identity,
-  location, markers, function, behaviour, developmental origin, disease
-  association). These are the assertions that matter for term-level
-  pass/fail.
-- **`background`** — a definitional categorisation of a molecule / process /
-  class mentioned in the definition, where the subject is not the cell type.
-  Examples: "Wnt2 is a canonical Wnt ligand", "Grem1 is a BMP inhibitor",
-  "T-bet is a transcription factor". Rule of thumb: if the assertion's
-  grammatical subject is a molecule, gene, process, or external concept
-  rather than the cell, it's `background`.
+## Routing payload
 
-Keep `background` assertions in the output — we test and warn on them so a
-hallucinated parenthetical surfaces — but they never cause a term to fail.
+Input data comes from the routing payload produced by
+`src/scripts/clara_select_targets.py` (for example `routing.json`). Load that
+JSON file from the repository root.
 
-Guidance:
+Normalise ids as follows:
 
-- One fact per assertion. Split conjunctions ("secretes X, Y, and Z" → three
-  assertions), split clauses that bundle identity + location + function.
-- Preserve the cell-type subject in every `core` assertion so it stands
-  alone.
+- underscore form (`CL_4033094`) is the runtime `cell_id`
+- CURIE form (`CL:4033094`) is the routing payload `term_id`
+
+The routing payload contains `targets`. Each target has one of these routes:
+
+- `ntr` — new term bundle; contains decomposable text plus structural context
+- `relationship` — a single atomic structural axiom to check
+- `synonym` — a single atomic synonym axiom to check
+
+Relevant target fields:
+
+- `target_id`
+- `route`
+- `validation_mode`
+- `term_id`
+- `term_label`
+- `term_is_new`
+- `candidate_refs`
+- `term_level_candidate_refs`
+- for `ntr`: `textual_changes` (legacy alias `definition_changes`) and
+  `relationship_changes`
+- for `relationship` / `synonym`: `change`
+
+## Term selection
+
+### Focused mode
+
+- Select all targets whose `term_id` matches the requested term id after
+  normalisation.
+- If no targets match, stop and say the routing payload does not contain that
+  term id.
+
+### Batch mode
+
+- Group all targets by `term_id`.
+- Process each term group independently.
+
+For every processed term, write one output bundle under `runs/{cell_id}/`.
+
+## Assertion preparation
+
+For a given term, convert every routed target into one or more assertions.
+
+### Route: `ntr`
+
+For `ntr` targets:
+
+1. Take each `added` change from `textual_changes` (or legacy
+   `definition_changes`).
+2. Decompose its `value` into atomic assertions.
+3. Tag each assertion as:
+   - `core` — the subject is the cell type itself
+   - `background` — the subject is a molecule, gene, process, or external
+     concept rather than the cell type
+4. Also take each `added` change from `relationship_changes` and convert it
+   into one atomic `core` assertion.
+
+### Route: `relationship`
+
+For `relationship` targets:
+
+- Convert the routed `change` into one atomic `core` assertion.
+
+### Route: `synonym`
+
+For `synonym` targets:
+
+- Convert the routed `change` into one atomic `core` assertion.
+
+### Removed sides
+
+- If a routed change has `side == "removed"`, do not attempt reference
+  justification. Record it as skipped and move on.
+
+## How to verbalise atomic routed changes
+
+Use plain natural-language assertions. Prefer labels when present.
+
+Examples:
+
+- `subclass`:
+  - "`{term_label}` is a `{value_label}`."
+- `relationship`:
+  - "`{term_label}` `{predicate_label}` `{value_label}`."
+- `synonym_exact`:
+  - "`{value}` is an exact synonym of `{term_label}`."
+- `synonym_broad`:
+  - "`{value}` is a broad synonym of `{term_label}`."
+- `synonym_narrow`:
+  - "`{value}` is a narrow synonym of `{term_label}`."
+- `synonym_related`:
+  - "`{value}` is a related synonym of `{term_label}`."
+
+For `equivalent_class` routed as a structural target:
+
+- If the routed change does not expose enough semantics to verbalise the
+  logical definition faithfully, create one `core` assertion noting that the
+  equivalent-class axiom for the term requires support.
+- If you cannot verify it from the exposed routing data, it is acceptable to
+  leave that assertion `uncertain` with a note explaining that the routed
+  payload does not provide enough structure for faithful verbalisation.
+
+## Reference scope per assertion
+
+Every assertion must carry its own `refs_in_scope`.
+
+Reference selection rules:
+
+- For assertions derived from an `ntr` target, prefer that target's
+  `candidate_refs`.
+- If an `ntr` target has no searchable `candidate_refs`, fall back to its
+  `term_level_candidate_refs`.
+- For `relationship` targets, prefer `candidate_refs`; if empty, fall back to
+  `term_level_candidate_refs`.
+- For `synonym` targets, use `candidate_refs`.
+- Searchable refs are only literature ids usable by the tools:
+  `PMID:...`, `doi:...`, or `DOI:...`.
+
+If an assertion ends up with zero searchable refs:
+
+- still keep it in the output
+- do not call search tools for it
+- mark it `uncertain`
+- record a note explaining that no searchable refs were available for that
+  routed target
+
+## Stage A — Decompose textual changes
+
+For every decomposable `textual_changes` entry:
+
+- One fact per assertion.
+- Split conjunctions ("secretes X, Y, and Z" → three assertions).
+- Split clauses that bundle identity + location + function.
+- Preserve the cell-type subject in every `core` assertion so it stands alone.
 - Strip hedges ("crucial for", "key") but keep the factual core.
-- Do not invent claims the definition does not make.
-- Skip pure taxonomy claims already stated in `relations` unless the
-  definition adds content beyond the is-a link.
+- Do not invent claims the text does not make.
+- Use only the routed textual change's `value` as the prose source of truth.
 
-Emit a numbered list of assertions (with category) before moving to Stage B.
+Emit the assertion list mentally before verification; you do not need to print
+it separately unless asked.
 
 ## Stage B — Verify each assertion (snippet-first)
 
-For each assertion:
+For each assertion that has searchable refs in scope:
 
-1. Build a short query capturing the key entities + claim (cell type + marker
-   / location / function). Avoid quoting the whole sentence.
+1. Build a short query capturing the key entities + claim.
 2. Call `mcp__Asta_semanticscholar__snippet_search` with:
-   - `query`: the query from step 1.
-   - `paper_ids`: the term's references, converted to comma-separated Asta
-     ids (`PMID:12345`, `DOI:10.xxxx/yyy` — uppercase the prefix, strip any
-     leading slash on `doi:/...`). **Always set `paper_ids`.** Never make an
-     unfiltered call.
-   - `limit`: 10 is usually enough.
-3. **Log the call.** Append one JSON line to
-   `runs/{cell_id}/tool_calls.jsonl`:
+   - `query`
+   - `paper_ids`: the assertion's refs in scope, converted to comma-separated
+     Asta ids (`PMID:12345`, `DOI:10.xxxx/yyy` — uppercase the prefix, strip
+     any leading slash on `doi:/...`)
+   - `limit`: 10 is usually enough
+3. Log the call by appending one JSON line to `runs/{cell_id}/tool_calls.jsonl`.
+   Include at least:
 
    ```json
-   {"tool":"snippet_search","assertion_id":1,"query":"<query>","paper_ids":"DOI:...,PMID:...","returned_paper_ids":["DOI:...","CorpusId:..."],"n_hits":7,"n_leaked":0}
+   {"tool":"snippet_search","assertion_id":"a1","target_id":"ntr:CL:...","query":"...","paper_ids":"PMID:...","returned_paper_ids":["PMID:..."],"n_hits":3,"n_leaked":0}
    ```
 
-   `returned_paper_ids` is the deduplicated list of paper ids across the
-   snippet hits (use whichever id form the response gives — DOI, PMID, or
-   CorpusId). `n_leaked` counts hits whose paper id is not in the requested
-   set.
-4. **Filter the results.** Drop any snippet whose paper id does not match one
-   of the requested `paper_ids` (by DOI, PMID, or corpusId cross-reference).
-   Leaked snippets are logged but never used as evidence.
+4. Drop leaked snippets whose paper id is not in the requested set.
 5. Decide:
-   - **pass** — a (non-leaked) snippet explicitly supports the assertion.
-   - **fail** — a (non-leaked) snippet explicitly contradicts it.
-   - **uncertain** — no snippet directly addresses the assertion.
-6. Any-reference-supports rule: if a single reference yields `pass`, the
-   assertion is `pass`. Do not require corroboration across references.
-7. Record the verdict, the supporting snippet text (quoted, trimmed), and
-   which paper it came from.
+   - `pass` — a non-leaked snippet explicitly supports the assertion
+   - `fail` — a non-leaked snippet explicitly contradicts it
+   - `uncertain` — no snippet directly addresses it
+6. Any-reference-supports rule: one supporting reference is enough for `pass`.
 
 ## Stage C — Full-text fallback
 
 Trigger only for `core` assertions still `fail` or `uncertain` after Stage B.
-`background` assertions stay at their Stage B verdict — no fallback.
+`background` assertions stay at their Stage B verdict.
 
-Group the unresolved `core` assertions by reference paper. For each reference
-that has unresolved assertions:
+Group unresolved `core` assertions by reference paper. For each paper:
 
-1. Call `mcp__artl-mcp__get_europepmc_full_text` with that paper's id. Log
-   the call to `tool_calls.jsonl` the same way (tool: `get_full_text`,
-   identifier, `available: true|false`).
-2. With the full text in context, re-evaluate **all** of that paper's
-   unresolved `core` assertions in one pass. This amortises the full-text
-   load — it is the experimental variable we are measuring.
-3. Update each assertion's verdict and cite the supporting passage.
+1. Call `mcp__artl-mcp__get_europepmc_full_text`.
+2. Log the call to `runs/{cell_id}/tool_calls.jsonl`:
 
-If full text is unavailable for a paper, leave those assertions at their
-Stage B verdict and note `full_text_available: false` on the call log and the
-assertion.
+   ```json
+   {"tool":"get_full_text","target_id":"...","identifier":"PMID:...","available":true}
+   ```
+
+3. Re-evaluate all unresolved `core` assertions for that paper in one pass.
+4. If full text is unavailable, leave those assertions at their Stage B
+   verdict and note `full_text_available: false`.
 
 ## Output
 
+For each processed term, write:
+
+- `runs/{cell_id}/verdicts.json`
+- `runs/{cell_id}/tool_calls.jsonl`
+- `runs/{cell_id}/report.md`
+
 ### `runs/{cell_id}/verdicts.json`
+
+Use this shape:
 
 ```json
 {
   "cell_id": "CL_4033094",
+  "term_id": "CL:4033094",
   "name": "...",
-  "definition": "...",
+  "targets_processed": [
+    {
+      "target_id": "ntr:CL:4033094",
+      "route": "ntr",
+      "validation_mode": "decompose_definition_and_relationships"
+    }
+  ],
   "references": ["PMID:...", "DOI:..."],
   "assertions": [
     {
-      "id": 1,
+      "id": "a1",
+      "target_id": "ntr:CL:4033094",
+      "route": "ntr",
+      "source_change_kind": "text_def",
       "text": "...",
-      "category": "core",
+      "category": "core|background",
+      "refs_in_scope": ["PMID:..."],
       "snippet_stage": {
         "verdict": "pass|fail|uncertain",
         "evidence": "...",
-        "source": "DOI:...",
+        "source": "PMID:...",
         "note": null
       },
       "full_text_stage": null,
@@ -146,37 +275,44 @@ assertion.
 }
 ```
 
-- `final_verdict` is derived: it is `full_text_stage.verdict` if that stage
-  ran, else `snippet_stage.verdict`.
+Notes:
+
+- `references` is the aggregate unique searchable ref list across all processed
+  targets for that term.
+- `final_verdict` is `full_text_stage.verdict` if that stage ran, else
+  `snippet_stage.verdict`.
 - `warn_background` is `true` iff `category == "background"` and
   `final_verdict` is `fail` or `uncertain`.
-- For term-level pass/fail, only `core` assertions count. Background
-  warnings surface in the summary but do not flag the term.
+- Term-level pass/fail is driven only by `core` assertions.
 
 ### `runs/{cell_id}/tool_calls.jsonl`
 
-One JSON object per line, one line per tool invocation. Both Stage B snippet
-searches and Stage C full-text fetches are logged.
+One JSON object per line, one line per tool invocation.
 
 ### `runs/{cell_id}/report.md`
 
-Short human-readable summary: term, definition, the assertion list with
-category, final verdict, and a trimmed evidence quote. Scannable. Listed
-explicitly as a required output.
+Short human-readable summary:
+
+- term name and id
+- processed targets
+- final term-level result
+- assertion list with final verdict
+- trimmed evidence quote for failures and notable uncertainties
+
+Group the report by routed target when that improves readability.
 
 ## Context efficiency
 
 - Do not re-load full text you already have in context.
 - When you load full text, validate every outstanding `core` assertion for
   that paper at once.
-- Do not copy snippets or full text into files beyond the quoted evidence in
+- Do not copy snippets or full text into files beyond quoted evidence in
   `verdicts.json` and `report.md`.
 
 ## What not to do
 
-- Do not mark an assertion `pass` on the strength of background knowledge.
-  Evidence must come from the cited references.
+- Do not mark an assertion `pass` from background knowledge alone.
 - Do not fabricate snippet text or paper ids.
 - Do not make `snippet_search` calls without `paper_ids` set.
-- Do not use leaked snippets (paper not in the requested set) as evidence.
-- Do not edit `cells_data.json` or `test_set.yaml`.
+- Do not use leaked snippets as evidence.
+- Do not edit `routing.json` or the source `changes.json`.
