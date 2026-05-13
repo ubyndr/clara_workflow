@@ -10,10 +10,10 @@ Agentic replication of the CLARA ontology-term verification workflow.
 ## What's in this repo
 
 - **[clara_workflow/agent_instructions.md](clara_workflow/agent_instructions.md)** —
-  the agent's runbook for verifying a single ontology term against its cited
-  references. This is the only "implementation" of the verification loop;
-  there is no Python orchestrator yet. You run it by pointing Claude at the
-  file (see *How to run* below).
+  the agent's runbook for verifying routed CLARA targets grouped by ontology
+  term against their cited references. This is the only "implementation" of
+  the verification loop; there is no Python orchestrator yet. You run it by
+  pointing Claude at the file (see *How to run* below).
 - **[clara_workflow/stage1/](clara_workflow/stage1/)** — Python parser for
   `robot diff --format markdown` output. Extracts the structured list of
   changes from a PR, classifies each by kind (`text_def`, `comment`,
@@ -45,16 +45,18 @@ Three stages, mapped onto how the code is split today:
    are routed to the agent for atomic-assertion checking; atomic changes
    (`synonym_*`, `subclass`, `relationship`, `equivalent_class`) are
    already single claims and would be checked directly (skill TBD).
-2. **Stage 2 — Assertion decomposition (agentic).** The agent breaks a
-   definition or comment into atomic, independently-verifiable claims and
-   tags each as `core` or `background`.
+2. **Stage 2 — Assertion decomposition (agentic).** The agent reads routed
+   term-level targets from `routing.json`, breaks decomposable text into
+   atomic, independently-verifiable claims, and tags each as `core` or
+   `background`.
 3. **Stage 3 — Assertion checking (agentic).** Snippet search via Asta
    (Semantic Scholar), with a full-text fallback via Europe PMC for any
    `core` assertion still unresolved. See `agent_instructions.md` for the
    exact protocol.
 
-Stages 2 and 3 are both driven by `clara_workflow/agent_instructions.md` —
-they are not separated yet.
+Stages 2 and 3 are both driven by `clara_workflow/agent_instructions.md`.
+The consumer contract for that agentic step is the routed payload generated
+from stage-1 output in the ontology repo.
 
 ## How to run
 
@@ -104,9 +106,8 @@ per-term summary. Requires ROBOT on `PATH`.
 
 The verification loop is currently invoked by pointing Claude at the
 instructions file. First generate a routed target payload (for example
-`routing.json`) from stage-1 output using
-`cell-ontology/src/scripts/clara_select_targets.py`, then from a Claude Code
-session in this repo run:
+`routing.json`) from stage-1 output using the ontology repo's routing helper,
+then from a Claude Code session in this repo run:
 
 ```
 @clara_workflow/agent_instructions.md verify CL_4033094
@@ -125,8 +126,8 @@ The agent will:
    `runs/{cell_id}/tool_calls.jsonl`, and
    `runs/{cell_id}/report.md`.
 
-`runs/CL_4033094/` and `runs/CL_4052008/` are example outputs from the
-previous CLARA implementation showing the expected shape.
+`runs/CL_4033094/` and `runs/CL_4052008/` are legacy outputs from the
+previous CLARA implementation showing the general verdict/report shape.
 
 ## Repo layout
 

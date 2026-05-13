@@ -30,6 +30,9 @@ Input data comes from the routing payload produced by
 `src/scripts/clara_select_targets.py` (for example `routing.json`). Load that
 JSON file from the repository root.
 
+Treat this routed payload as the stable consumer contract for PR-triggered
+CLARA review.
+
 Normalise ids as follows:
 
 - underscore form (`CL_4033094`) is the runtime `cell_id`
@@ -54,6 +57,22 @@ Relevant target fields:
 - for `ntr`: `textual_changes` (legacy alias `definition_changes`) and
   `relationship_changes`
 - for `relationship` / `synonym`: `change`
+
+### Contract rules
+
+- The processing unit is one **term group**, not one raw target:
+  collect every target whose `term_id` matches the requested term and process
+  them together.
+- The canonical field for decomposable prose is `textual_changes`.
+  `definition_changes` is accepted only as a backward-compatibility alias
+  while producer/consumer wiring is being cleaned up.
+- `candidate_refs` and `term_level_candidate_refs` should already be filtered
+  to searchable literature ids before they reach the agent. Do not invent or
+  broaden the ref set beyond what the payload provides.
+- Searchable refs are only ids usable by the tools: `PMID:...`, `DOI:...`, or
+  `doi:...`.
+- Unknown `route` values are contract errors: stop and report them rather
+  than guessing.
 
 ## Term selection
 
@@ -147,8 +166,8 @@ Reference selection rules:
 - For `relationship` targets, prefer `candidate_refs`; if empty, fall back to
   `term_level_candidate_refs`.
 - For `synonym` targets, use `candidate_refs`.
-- Searchable refs are only literature ids usable by the tools:
-  `PMID:...`, `doi:...`, or `DOI:...`.
+- Assume these ref lists were prefiltered upstream; only normalize case and
+  slash formatting needed by the search tools.
 
 If an assertion ends up with zero searchable refs:
 
@@ -279,6 +298,8 @@ Notes:
 
 - `references` is the aggregate unique searchable ref list across all processed
   targets for that term.
+- Every assertion must preserve `target_id`, `route`, and
+  `source_change_kind` so the workflow can map results back to routed inputs.
 - `final_verdict` is `full_text_stage.verdict` if that stage ran, else
   `snippet_stage.verdict`.
 - `warn_background` is `true` iff `category == "background"` and
